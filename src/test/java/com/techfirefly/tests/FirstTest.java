@@ -1,7 +1,12 @@
 package com.techfirefly.tests;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,6 +15,7 @@ import org.testng.annotations.Test;
 public class FirstTest {
 
 	WebDriver driver;
+	private By spotLight = By.xpath("//h4[text()='SPOTLIGHT']");
 
 	@BeforeMethod
 	public void setup() {
@@ -27,15 +33,24 @@ public class FirstTest {
 	}
 
 	@Test
-	public void test() {
+	public void test1() {
 
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException ie) {
-		}
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(spotLight));
 
 		Assert.assertEquals(driver.getTitle(), "Tech Firefly | Illuminating Solutions Globally");
+		System.out.println("test1 | finished successfully ------------------");
 
+	}
+	
+	@Test
+	public void test2() {
+
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(spotLight));
+
+		Assert.assertEquals(driver.getTitle(), "Tech Firefly | Illuminating Solutions Globally");
+		System.out.println("test2 | finished successfully ------------------");
 	}
 
 }
